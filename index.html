@@ -80,36 +80,24 @@
   function openModal(id) { document.getElementById(id).style.display = 'flex'; }
   function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-  // In-memory users (for testing)
-  const users = [];
-
-  // Backend URL placeholder
-  const API_URL = ""; // e.g., "http://localhost:3000" or your deployed backend
+  // Backend URL
+  const API_URL = "http://localhost:3000";
 
   async function signup() {
     const username = document.getElementById('signup-username').value;
     const password = document.getElementById('signup-password').value;
     if(!username || !password) { document.getElementById('signup-error').textContent='Fill both fields'; return; }
 
-    if(API_URL) {
-      // Call backend
-      try {
-        const res = await fetch(`${API_URL}/signup`, {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({username,password})
-        });
-        const data = await res.json();
-        if(res.ok){ alert('User registered!'); closeModal('signup-modal'); }
-        else document.getElementById('signup-error').textContent = data.message;
-      } catch(e) { document.getElementById('signup-error').textContent='Server error'; }
-    } else {
-      // In-memory fallback
-      if(users.find(u=>u.username===username)){ document.getElementById('signup-error').textContent='User exists'; return; }
-      users.push({username,password});
-      alert('User registered! You can now sign in.');
-      closeModal('signup-modal');
-    }
+    try {
+      const res = await fetch(`${API_URL}/signup`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({username,password})
+      });
+      const data = await res.json();
+      if(res.ok){ alert('User registered!'); closeModal('signup-modal'); }
+      else document.getElementById('signup-error').textContent = data.message;
+    } catch(e) { document.getElementById('signup-error').textContent='Server error'; }
   }
 
   async function signin() {
@@ -117,29 +105,19 @@
     const password = document.getElementById('signin-password').value;
     if(!username || !password) { document.getElementById('signin-error').textContent='Fill both fields'; return; }
 
-    if(API_URL) {
-      // Call backend
-      try {
-        const res = await fetch(`${API_URL}/signin`, {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({username,password})
-        });
-        const data = await res.json();
-        if(res.ok){
-          localStorage.setItem('token', data.token);
-          alert('Signed in!');
-          closeModal('signin-modal');
-        } else document.getElementById('signin-error').textContent = data.message;
-      } catch(e) { document.getElementById('signin-error').textContent='Server error'; }
-    } else {
-      // In-memory fallback
-      const user = users.find(u=>u.username===username && u.password===password);
-      if(!user){ document.getElementById('signin-error').textContent='Invalid username or password'; return; }
-      localStorage.setItem('token','fake-jwt-token');
-      alert('Signed in successfully!');
-      closeModal('signin-modal');
-    }
+    try {
+      const res = await fetch(`${API_URL}/signin`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({username,password})
+      });
+      const data = await res.json();
+      if(res.ok){
+        localStorage.setItem('token', data.token);
+        alert('Signed in!');
+        closeModal('signin-modal');
+      } else document.getElementById('signin-error').textContent = data.message;
+    } catch(e) { document.getElementById('signin-error').textContent='Server error'; }
   }
 </script>
 
