@@ -71,7 +71,8 @@ document.getElementById('open-signup').addEventListener('click', e=>{ e.preventD
 function openModal(id){ document.getElementById(id).style.display='flex'; }
 function closeModal(id){ document.getElementById(id).style.display='none'; }
 
-const API_URL = "https://ai-builder-400.vercel.app/"; // replace with your Vercel URL
+const API_URL = "const API_URL = "https://ai-builder-400.vercel.app/api";
+"; // replace with your Vercel URL
 
 async function signup(){
   const username=document.getElementById('signup-username').value;
