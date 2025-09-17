@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Builder - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;background:#f5f5f7;display:flex;}
+/* Sidebar */
+.sidebar{position:fixed;left:0;top:0;width:250px;height:100vh;background:#fff;box-shadow:2px 0 10px rgba(0,0,0,0.1);display:flex;flex-direction:column;justify-content:space-between;}
+.logo{padding:1.5rem;font-weight:700;color:#6a0dad;font-size:1.25rem;}
+.nav-links{list-style:none;padding:0;margin:0;}
+.nav-links li{padding:1rem 1.5rem;cursor:pointer;display:flex;align-items:center;color:#555;}
+.nav-links li.active{background:#6a0dad;color:#fff;border-radius:8px;}
+.nav-links li i{margin-right:0.75rem;}
+.hr{height:1px;background:#eee;margin:0.5rem 0;}
+.usage{padding:1rem;}
+.progress-bar{background:#eee;border-radius:5px;height:12px;margin-bottom:0.75rem;overflow:hidden;}
+.progress{height:100%;background:#6a0dad;width:0;}
+.upgrade-btn{display:block;width:100%;padding:0.5rem;text-align:center;background:#ff9800;color:#fff;border:none;border-radius:5px;cursor:pointer;margin-top:0.5rem;}
+/* Main Content */
+.main{margin-left:250px;padding:2rem;flex:1;}
+header{font-size:1.5rem;font-weight:600;margin-bottom:1rem;}
+.alert{background:#ffe082;padding:1rem;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+.alert button{background:#6a0dad;color:#fff;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;}
+.card{background:#fff;padding:1.5rem;border-radius:12px;display:flex;justify-content:space-between;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.card-left{flex:2;}
+.new-tag{background:#ffeb3b;color:#000;padding:0.25rem 0.5rem;font-size:0.75rem;font-weight:600;border-radius:4px;margin-bottom:0.5rem;display:inline-block;}
+.card h3{margin-top:0;margin-bottom:1rem;}
+.feature{display:flex;align-items:center;margin-bottom:0.5rem;}
+.feature i{margin-right:0.5rem;color:#6a0dad;}
+.card-right{flex:1;position:relative;}
+.card-right img{width:100%;border-radius:10px;}
+.card-right i{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;color:#fff;cursor:pointer;}
+.learn-more{margin-top:1rem;color:#6a0dad;display:inline-block;cursor:pointer;}
+</style>
+<script src="https://kit.fontawesome.com/6f4d9a4e3b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="sidebar">
+  <div>
+    <div class="logo">AI Builder</div>
+    <ul class="nav-links">
+      <li class="active"><i class="fas fa-home"></i>Home</li>
+      <li><i class="fas fa-layer-group"></i>Projects</li>
+      <li><i class="fas fa-cog"></i>Settings</li>
+    </ul>
+    <div class="hr"></div>
+    <ul class="nav-links">
+      <li><i class="fas fa-question-circle"></i>Help</li>
+      <li><i class="fas fa-info-circle"></i>About</li>
+    </ul>
+  </div>
+  <div class="usage">
+    <p>Starter plan usage limit exceeded</p>
+    <label>Free Apps <i class="fas fa-cubes"></i></label>
+    <div class="progress-bar"><div class="progress" style="width:20%"></div></div>
+    <label>Agent Usage <i class="fas fa-robot"></i></label>
+    <div class="progress-bar"><div class="progress" style="width:100%"></div></div>
+    <button class="upgrade-btn">Upgrade to Replit Core</button>
+  </div>
+</div>
+
+<div class="main">
+  <header id="greeting">Hi, what do you want to make?</header>
+  <div class="alert">
+    <span>You’ve reached your usage limit</span>
+    <button>Upgrade</button>
+  </div>
+  <div class="card">
+    <div class="card-left">
+      <span class="new-tag">New</span>
+      <h3>Introducing Agent 3: Autonomy for all.</h3>
+      <div class="feature"><i class="fas fa-bolt"></i> Feature 1: Fast AI building</div>
+      <div class="feature"><i class="fas fa-cogs"></i> Feature 2: Easy customization</div>
+      <div class="feature"><i class="fas fa-shield-alt"></i> Feature 3: Secure & reliable</div>
+      <span class="learn-more">Learn more</span>
+    </div>
+    <div class="card-right">
+      <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" alt="Video thumbnail">
+      <i class="fas fa-play-circle"></i>
+    </div>
+  </div>
+</div>
+
+<script>
+const username = localStorage.getItem('username');
+if(username) document.getElementById('greeting').textContent = `Hi ${username}, what do you want to make?`;
+else window.location.href="index.html"; // redirect if not logged in
+</script>
+
+</body>
+</html>
