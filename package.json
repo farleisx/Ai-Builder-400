@@ -1,9 +1,8 @@
 {
-  "name": "infiner",
+  "name": "ai-builder",
   "version": "1.0.0",
-  "type": "module",
+  "main": "index.js",
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "jsonwebtoken": "^9.0.0"
+    "bcrypt": "^5.1.0"
   }
 }
